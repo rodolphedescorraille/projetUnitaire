@@ -23,6 +23,17 @@ class UserController extends AbstractController
         ]);
     }
 
+    public function showTest($userRepository)
+    {
+        
+        if(count($userRepository) > 0){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
@@ -49,15 +60,13 @@ class UserController extends AbstractController
 
     public function newTest($firstName, $lastName, $email, $phone)
     {
-        $user = new User();
-        $user->setFirstname($firstName);
-        $user->setLastname($lastName);
-        $user->setEmail($lastName);
-        $user->setPhone($lastName);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
-        return $this->redirectToRoute('user');
+        
+        if(is_string($firstName)&&is_string($lastName)&&is_string($email)&&is_string($phone)){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     /**
@@ -78,6 +87,17 @@ class UserController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
         ]);
+    }
+
+    public function editTest($val1, $val2 = NULL, $val3 = NULL, $val4 = NULL)
+    {
+        
+        if(is_string($val1)||is_string($val2)||is_string($val3)||is_string($val4)){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
       /**
